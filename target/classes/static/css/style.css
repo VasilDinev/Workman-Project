@@ -1,0 +1,61 @@
+hr.hr-2 {
+    height: 2px;
+}
+
+.logout-button {
+    background: transparent;
+    border: none;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 1) !important;
+}
+
+.logout-button:hover {
+    cursor: pointer;
+}
+
+.logout-button:focus {
+    outline: none;
+}
+
+img.img-thumbnail {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px; /* Rounded border */
+    padding: 5px; /* Some padding */
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.btn-width {
+    width: 120px;
+    margin: 5px;
+}
+
+.error {
+    color: red;
+    font-family: "Harlow Solid Italic";
+}
+footer {
+    position:fixed;
+    bottom:0;
+    width: 100%;
+}
+
+body {
+    background-image: url("https://cdn2.vectorstock.com/i/1000x1000/55/51/group-portrait-of-cute-happy-industry-or-vector-24505551.jpg");
+    background-position: unset;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #cccccc;
+    position:relative;
+}
+body:after {
+    content: '';
+    display: block;
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:-1;
+}

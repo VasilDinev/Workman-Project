@@ -1,0 +1,91 @@
+<th:block>
+    <th:block sec:authorize="isAnonymous()">
+        <nav class="navbar-expand-lg navbar-light bg-light rounded font-weight-bold">
+            <nav class="navbar bg-dark navbar-expand-lg navbar-background bg-dark ">
+
+                <a class="navbar-brand text-white h4" href="/">Workman</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#gustNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-flex justify-content-end" id="guestNav">
+                    <ul class="navbar-nav row">
+
+                        <li class="nav-item col-md-4">
+                            <a class="nav-link text-white active h5" th:href="@{/users/login}">Login</a>
+                        </li>
+                        <li class="nav-item col-md-4">
+                            <a class="nav-link text-white active h5" th:href="@{/users/register}">Register</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+
+    </th:block>
+    <th:block sec:authorize="isAuthenticated()">
+        <nav class="navbar bg-dark navbar-expand-lg navbar-background bg-dark ">
+            <a class="navbar-brand text-white h4" th:href="@{/home}">Workman</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#userNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex justify-content-end" id="userNav">
+                <ul class="navbar-nav row">
+                    <li class="nav-item mr-2">
+                    <li class="nav-item active">
+                        <div class="dropdown">
+                            <a class="nav-link active text-white active h5 dropdown-toggle" href="#" role="button" id="workmanDropdown"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Workman Zone
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="workmanDropdown">
+                                <a class="dropdown-item" th:href="@{/workman/add}">Add Workman</a>
+                                <a class="dropdown-item" th:href="@{/workman/list}">Workman List</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item mr-2">
+                        <a class="nav-link text-white active h5" th:href="@{/workman/all}">All Workman</a>
+                    </li>
+                    <a class="nav-link text-white active h5" th:href="@{/users/profile}"> Profile </a>
+                    </li>
+
+                    <li class="nav-item active">
+                    <div class="dropdown">
+                    <a class="nav-link active text-white active h5 dropdown-toggle" href="#" role="button" id="BlockDropdown"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Block
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="BlockDropdown">
+                        <a class="dropdown-item" th:href="@{/comments/create}">Add Comment</a>
+                        <a class="dropdown-item" th:href="@{/workman/list}">My Comment</a>
+                        <a class="dropdown-item" th:href="@{/comments/list}">Comment List</a>
+                    </div>
+                    </div>
+                    </li>
+
+
+                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                        <li class="nav-item active">
+                            <div class="dropdown">
+                                <a class="nav-link active text-white active h5 dropdown-toggle" href="#" role="button" id="adminDropdown"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                                    <a class="dropdown-item" th:href="@{/users/all}">All Users</a>
+                                    <a class="dropdown-item" th:href="@{/workman/all}">All Workman</a>
+                                    <a class="dropdown-item" th:href="@{/comments/all}">All Comment</a>
+                                </div>
+                            </div>
+                        </li>
+                    </th:block>
+                    <li class="nav-item mr-2">
+                        <a class="nav-link text-white active h5" th:href="@{/logout}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </th:block>
+</th:block>
