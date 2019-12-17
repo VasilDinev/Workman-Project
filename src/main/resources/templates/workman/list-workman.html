@@ -9,9 +9,9 @@
     <th:block th:include="~{fragments/navbar}"></th:block>
 </header>
 <main class="mt-3">
-    <h1 class="text-center text-dark">All Workman</h1>
+    <h1 class="text-center text-dark">Workman List</h1>
     <hr class="hr-2 bg-dark w-75">
-    <table class="table table-hover w-75 mx-auto">
+    <table class="jumbotron myBackground table table-hover w-75 mx-auto text font-weight-bold">
         <thead>
         <tr class="row mx-auto">
             <th class="col-md-1 text-center">#</th>
@@ -28,12 +28,12 @@
         <th:block th:each="workman, iter : ${workman}">
             <tr class="row mx-auto">
                 <th class="col-md-1 text-center" th:text="${iter.index + 1}"></th>
-                <td class="col-md-2"><div class="text-center"><img th:src="${workman.imageUrl}" width="40" height="40" alt="workmans"></div></td>
-                <td class="col-md-2 text-center" th:text="${workman.firstName}"></td>
-                <td class="col-md-2 text-center" th:text="${workman.lastName}"></td>
+                <td class="col-md-2"><div class="text-center"><img th:src="${workman.imageUrl}" width="40" height="40" alt="workman"></div></td>
+                <td class="col-md-1 text-center" th:text="${workman.firstName}"></td>
+                <td class="col-md-1 text-center" th:text="${workman.lastName}"></td>
                 <td class="col-md-2 text-center" th:text="${workman.email}"></td>
                 <td class="col-md-2 text-center" th:text="${workman.phoneNumber}"></td>
-                <td class="col-md-1 text-center" th:text="${workman.jobFunction}"></td>
+                <td class="col-md-3 text-center" th:text="${workman.jobFunction}"></td>
 
                 <td class="col-md-3 text-center">
                     <a th:href="@{/workman/details/{id}(id=${workman.id})}" class="btn btn-secondary font-weight-bold text-white">Details</a>

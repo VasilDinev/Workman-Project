@@ -98,7 +98,7 @@ public class CommentServiceImpl implements CommentService {
         comment.setTitle(commentServiceModel.getTitle());
         comment.setAuthor(commentServiceModel.getAuthor());
         comment.setDescription(commentServiceModel.getDescription());
-        comment.setImgUrl(commentServiceModel.getImgUrl());
+        comment.setImageUrl(commentServiceModel.getImageUrl());
         return this.modelMapper.map(this.commentRepository.saveAndFlush(comment), CommentServiceModel.class);
 
     }

@@ -9,7 +9,7 @@ public class Comment extends BaseEntity {
     private String title;
     private String author;
     private String description;
-    private String imgUrl;
+    private String imageUrl;
     private Workman workman;
     private User user;
 
@@ -42,17 +42,18 @@ public class Comment extends BaseEntity {
         this.description = description;
     }
     @Column(name = "image_url", nullable = false)
-    public String getImgUrl() {
-        return imgUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
     @ManyToOne(targetEntity = Workman.class)
     @JoinColumn(
             name = "workman_id",
             referencedColumnName = "id"
+
     )
     public Workman getWorkman() {
         return workman;
@@ -63,7 +64,7 @@ public class Comment extends BaseEntity {
     }
 
     @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id", unique = false)
     public User getUser() {
         return user;
     }

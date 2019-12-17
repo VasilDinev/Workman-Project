@@ -48,10 +48,10 @@ public class User extends BaseEntity implements UserDetails {
     public void setEmail(String email) {
         this.email = email;
     }
-    @OneToMany()
-    @JoinTable(name = "comments",
-            joinColumns = @JoinColumn(name = "comment_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+//    @JoinTable(name = "comments",
+//            joinColumns = @JoinColumn(name = "comment_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
     public List<Comment> getComments() {
         return comments;
     }

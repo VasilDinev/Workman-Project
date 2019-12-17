@@ -43,7 +43,7 @@ fetch('http://localhost:8000/comments/fetch')
 $('.comments-data').empty();
 
 if (json.length === 0) {
-$('.comments-data').append(`<h1 class="text-center font-weight-bold">There are no comments in the ${comments}.</h1>`)
+$('.comments-data').append(`<h1 class="text-center font-weight-bold">There are no comments.</h1>`)
 } else {
 for (let i = 0; i < json.length; i += 3) {
 $('.comments-data').append('<div class="comments-row row d-flex justify-content-around mt-5">');

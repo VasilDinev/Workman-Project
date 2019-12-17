@@ -10,7 +10,7 @@ public interface  WorkmanService {
 
     WorkmanServiceModel findWorkmanById (String id);
     WorkmanServiceModel editWorkman(String id, WorkmanServiceModel workmanServiceModel);
-    WorkmanServiceModel deleteWorkman(String id);
+    void deleteWorkman(String id);
 
     List<WorkmanServiceModel> findAllWorkman();
 }

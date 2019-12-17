@@ -9,7 +9,7 @@ public class AddWorkmanBindingModel {
     private String email;
     private Integer phoneNumber;
     private String jobFunction;
-    private MultipartFile image;
+    private MultipartFile imageUrl;
 
     public AddWorkmanBindingModel() {
     }
@@ -54,11 +54,11 @@ public class AddWorkmanBindingModel {
         this.jobFunction = jobFunction;
     }
 
-    public MultipartFile getImage() {
-        return image;
+    public MultipartFile getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(MultipartFile image) {
-        this.image = image;
+    public void setImageUrl(MultipartFile imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

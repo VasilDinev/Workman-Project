@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -55,12 +56,15 @@ public class CommentController extends BaseController {
             CommentServiceModel commentServiceModel = this.modelMapper
                     .map(model, CommentServiceModel.class);
 
-            commentServiceModel.setWorkman(this.workmanService.findAllWorkman()
-            .stream()
-            .filter(w-> model.getWorkman().contains(w.getId()))
-            .collect(Collectors.toList()));
+            commentServiceModel.setWorkman(this.workmanService.findWorkmanById(model.getWorkman()));
+
+
             commentServiceModel.setUser( this.userService.findUserByUserName(principal.getName()));
-            commentServiceModel.setImgUrl(this.cloudinaryService.uploadImage(model.getImgUrl()));
+            commentServiceModel.setImageUrl(this.cloudinaryService.uploadImage(model.getImageUrl()));
+//            commentServiceModel.setWorkman(this.workmanService.findAllWorkman()
+//            .stream()
+//            .filter(w->model.getWorkman().contains(w.getId()))
+//            .collect(Collectors.toList()));
 
             this.commentService.createComment(commentServiceModel);
 
@@ -93,25 +97,11 @@ public class CommentController extends BaseController {
 //        return super.view("comments/details-comments", modelAndView);
 //    }
 
-    @GetMapping("/details")
 
-    @PageTitle("My Comment")
-    public ModelAndView viewOrganisation(Principal principal, ModelAndView modelAndView) {
-
-        CommentServiceModel commentServiceModel = this.commentService
-                .getCommentByUsername(principal.getName());
-
-        CommentViewModel commentViewModel = this.modelMapper
-                .map(commentServiceModel, CommentViewModel.class);
-
-        modelAndView.addObject("viewModel", commentViewModel);
-
-        return super.view("comments/details", modelAndView);
-    }
     @GetMapping("/my")
     @PreAuthorize("isAuthenticated()")
     @PageTitle("My Comments")
-    public ModelAndView getMyOrders(ModelAndView modelAndView, Principal principal) {
+    public ModelAndView getMyComments(ModelAndView modelAndView, Principal principal) {
         List<CommentViewModel> commentViewModels = commentService.findAllByUser(principal.getName())
                 .stream()
                 .map(c -> modelMapper.map(c, CommentViewModel.class))
@@ -122,17 +112,16 @@ public class CommentController extends BaseController {
         return view("comments/all-comments", modelAndView);
     }
 
-    @GetMapping("/my/details/{id}")
+    @GetMapping("/details/{id}")
     @PreAuthorize("isAuthenticated()")
     @PageTitle("Comments Details")
-    public ModelAndView myOrderDetails(@PathVariable String id, ModelAndView modelAndView) {
+    public ModelAndView CommentsDetails(@PathVariable String id, ModelAndView modelAndView) {
         CommentViewModel commentViewModel = this.modelMapper.map(this.commentService.findCommentById(id), CommentViewModel.class);
         modelAndView.addObject("comments", commentViewModel);
 
-        return super.view("comments/comments-details", modelAndView);
+        return super.view("comments/details-comment", modelAndView);
     }
     @GetMapping("/fetch")
-
     @ResponseBody
     public List<CommentAllViewModel> fetchComments() {
         List<CommentAllViewModel> comments = this.commentService.findAllComments()
@@ -156,9 +145,69 @@ public class CommentController extends BaseController {
                         })
                         .collect(Collectors.toList());
 
-        modelAndView.addObject("comment", commentAllViewModels);
+        modelAndView.addObject("comments", commentAllViewModels);
 
         return super.view("comments/list-comments", modelAndView);
     }
+    @GetMapping("/edit/{id}")
+    @PreAuthorize("isAuthenticated()")
+    @PageTitle("Edit Comments")
+    public ModelAndView editComment(@PathVariable String id, ModelAndView modelAndView) throws IOException {
+        CommentServiceModel commentServiceModel = this.commentService.findCommentById(id);
+
+        AddCommentBindingModel model = this.modelMapper.map(commentServiceModel, AddCommentBindingModel.class);
+
+//        model.setImageUrl(this.cloudinaryService.uploadImage(commentServiceModel.getImageUrl()));
+
+
+        modelAndView.addObject("comment", model);
+        modelAndView.addObject("commentId", id);
+
+        return super.view("comments/edit-comment", modelAndView);
+    }
+
+    @PostMapping("/edit/{id}")
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
+    public ModelAndView editCommentConfirm(@PathVariable String id, @ModelAttribute AddCommentBindingModel model) {
+        this.commentService.editComment(id, this.modelMapper.map(model, CommentServiceModel.class));
+
+        return super.redirect("/comments/details/" + id);
+    }
+
+    @GetMapping("/delete/{id}")
+    @PreAuthorize("isAuthenticated()")
+
+    public ModelAndView deleteComment(@PathVariable String id, ModelAndView modelAndView) {
+        CommentServiceModel commentServiceModel = this.commentService.findCommentById(id);
+        AddCommentBindingModel model = this.modelMapper.map(commentServiceModel, AddCommentBindingModel.class);
+
+
+        modelAndView.addObject("comment", model);
+        modelAndView.addObject("CommentId", id);
+
+        return super.view("comments/delete-comment", modelAndView);
+    }
+
+    @PostMapping("/delete/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView deleteCommentConfirm(@PathVariable String id) {
+        this.commentService.deleteComment(id);
+
+        return super.redirect("/comments/list");
+    }
+    @GetMapping("/workman/{id}")
+    @PreAuthorize("isAuthenticated()")
+    @PageTitle("Workman Comments")
+    public ModelAndView getWorkmanComments(ModelAndView modelAndView,@PathVariable String id) {
+        List<CommentViewModel> commentViewModels = commentService.findAllByWorkman(id)
+                .stream()
+                .map(c -> modelMapper.map(c, CommentViewModel.class))
+                .collect(Collectors.toList());
+
+        modelAndView.addObject("comments", commentViewModels);
+
+        return view("comments/workman-comments", modelAndView);
+    }
+
 
 }

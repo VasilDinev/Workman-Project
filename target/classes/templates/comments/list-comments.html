@@ -24,19 +24,20 @@
         </tr>
         </thead>
         <tbody>
-        <th:block th:each="comments, iter : ${comment}">
+        <th:block th:each="comment, iter : ${comments}">
             <tr class="row mx-auto">
                 <th class="col-md-1 text-center" th:text="${iter.index + 1}"></th>
-                <td class="col-md-2"><div class="text-center"><img th:src="${comment.imageUrl}" width="40" height="40" alt="comment"></div></td>
+                <td class="col-md-2"><div class="text-center"><img th:src="${comment.imageUrl}" width="40" height="40" alt="comments"></div></td>
+
                 <td class="col-md-2 text-center" th:text="${comment.title}"></td>
                 <td class="col-md-2 text-center" th:text="${comment.author}"></td>
                 <td class="col-md-2 text-center" th:text="${comment.description}"></td>
 
 
                 <td class="col-md-3 text-center">
-                    <a th:href="@{/workman/details/{id}(id=${comment.id})}" class="btn btn-secondary font-weight-bold text-white">Details</a>
-                    <a th:href="@{/workman/edit/{id}(id=${comment.id})}" class="btn btn-success font-weight-bold text-white">Edit</a>
-                    <a th:href="@{/workman/delete/{id}(id=${comment.id})}" class="btn btn-danger font-weight-bold text-white">Delete</a>
+                    <a th:href="@{/comments/details/{id}(id=${comment.id})}" class="btn btn-secondary font-weight-bold text-white">Details</a>
+                    <a th:href="@{/comments/edit/{id}(id=${comment.id})}" class="btn btn-success font-weight-bold text-white">Edit</a>
+                    <a th:href="@{/comments/delete/{id}(id=${comment.id})}" class="btn btn-danger font-weight-bold text-white">Delete</a>
                 </td>
             </tr>
         </th:block>

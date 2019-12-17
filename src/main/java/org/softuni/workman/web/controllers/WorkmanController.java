@@ -50,7 +50,7 @@ public class WorkmanController extends BaseController {
     public ModelAndView addWorkmanConfirm(@ModelAttribute AddWorkmanBindingModel model) throws IOException {
         WorkmanServiceModel workmanServiceModel = this.modelMapper.map(model, WorkmanServiceModel.class);
 
-        workmanServiceModel.setImageUrl(cloudinaryService.uploadImage(model.getImage()));
+        workmanServiceModel.setImageUrl(cloudinaryService.uploadImage(model.getImageUrl()));
 
         this.workmanService.createWorkman(workmanServiceModel);
 

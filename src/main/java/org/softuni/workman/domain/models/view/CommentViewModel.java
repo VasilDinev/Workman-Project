@@ -5,6 +5,7 @@ public class CommentViewModel {
     private String title;
     private String author;
     private String description;
+    private String imageUrl;
 
 
     public CommentViewModel() {
@@ -40,5 +41,13 @@ public class CommentViewModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

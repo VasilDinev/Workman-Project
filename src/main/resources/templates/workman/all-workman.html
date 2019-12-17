@@ -8,29 +8,12 @@
     <th:block th:replace="fragments/navbar"></th:block>
     <main class="mt-3">
         <div class="row d-flex justify-content-between">
-<!--            <div class="workman-navigation col-md-3">-->
 
-<!--&lt;!&ndash;                <form class="mt-3">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="worman-control custom-radio mt-3">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <input type="radio" id="allRadio" name="selection"&ndash;&gt;-->
-<!--&lt;!&ndash;                               class="workman-control-input"&ndash;&gt;-->
-<!--&lt;!&ndash;                               value="all">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <label class="h4 workman-control-label" for="allRadio">Workman</label>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <th:block th:each="workman : ${workman}" th:object="${workman}">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="custom-control custom-radio mt-3">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="radio" th:id="|*{name.toLowerCase()}Radio|" name="workman"&ndash;&gt;-->
-<!--&lt;!&ndash;                                   class="workman-control-input"&ndash;&gt;-->
-<!--&lt;!&ndash;                                   th:value="*{firstName}">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <label class="h4 workman-control-label" th:for="|*{firstName.toLowerCase()}Radio|"&ndash;&gt;-->
-<!--&lt;!&ndash;                                   th:text="*{firstName}"></label>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </th:block>&ndash;&gt;-->
-<!--&lt;!&ndash;                </form>&ndash;&gt;-->
-<!--            </div>-->
             <div class="data col-md-12">
                 <h1 class="text-center font-weight-bold">Workman</h1>
-                <div class="workman-data"></div>
+                <div class="workman-data">
+
+                </div>
             </div>
         </div>
     </main>
@@ -38,7 +21,7 @@
 </div>
 <script>
     function formatWorkman(workman) {
-        return '<div class="workman">'
+        return '<div class="workman jumbotron myBackground">'
             + '<div class="text-center">'
             + `<a href="/workman/details/${workman.id}"><img src="${workman.imageUrl}" class="workman-image-home img-thumbnail px-auto" alt="Image not loaded..."/></a>`
             + '</div>'
@@ -46,7 +29,10 @@
             + `<h5 class="text-center font-weight-bold mt-3">Phone Number: ${workman.phoneNumber} </h5>`
             + `<h5 class="text-center font-weight-bold mt-3">Email: ${workman.emial} </h5>`
             + `<h5 class="text-center font-weight-bold mt-3">Job Function: ${workman.jobFunction} </h5>`
-
+             + `<h5 class="btn btn-danger font-weight-bold text-white">Comments</h5>`
+            + '<div class="text-center">'
+            + `<a  href="/comments/workman-comments/${workman.id}"><h5 class="btn btn-danger font-weight-bold text-white">Comments</h5></a>`
+            + '</div>'
             + '</div>'
     }
 

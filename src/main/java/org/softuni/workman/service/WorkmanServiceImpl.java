@@ -66,12 +66,12 @@ public class WorkmanServiceImpl implements WorkmanService {
     }
 
     @Override
-    public WorkmanServiceModel deleteWorkman(String id) {
+    public void deleteWorkman(String id) {
         Workman workman = this.workmanRepository.findById(id).orElseThrow(() -> new WorkmanNotFoundException("Workman with the given id was not found!"));
 
          this.workmanRepository.delete(workman);
 
-         return this.modelMapper.map(workman, WorkmanServiceModel.class);
+
     }
 
     @Override

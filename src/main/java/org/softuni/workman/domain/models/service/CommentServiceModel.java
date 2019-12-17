@@ -8,9 +8,9 @@ public class CommentServiceModel extends BaseServiceModel {
     private String title;
     private String author;
     private String description;
-    private String imgUrl;
+    private String imageUrl;
     private UserServiceModel user;
-    private List<WorkmanServiceModel> workman;
+    private WorkmanServiceModel workman;
 
 
     public CommentServiceModel() {
@@ -40,12 +40,12 @@ public class CommentServiceModel extends BaseServiceModel {
         this.description = description;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public UserServiceModel getUser() {
@@ -56,14 +56,20 @@ public class CommentServiceModel extends BaseServiceModel {
         this.user = user;
     }
 
-    public List<WorkmanServiceModel> getWorkman() {
+//    public List<WorkmanServiceModel> getWorkman() {
+//        return workman;
+//    }
+//
+//    public void setWorkman(List<WorkmanServiceModel> workman) {
+//        this.workman = workman;
+//    }
+
+
+    public WorkmanServiceModel getWorkman() {
         return workman;
     }
 
-    public void setWorkman(List<WorkmanServiceModel> workman) {
+    public void setWorkman(WorkmanServiceModel workman) {
         this.workman = workman;
     }
-
-
-
 }

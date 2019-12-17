@@ -6,7 +6,7 @@ public class AddCommentBindingModel {
     private String title;
     private String author;
     private String description;
-    private MultipartFile imgUrl;
+    private MultipartFile imageUrl;
     private String workman;
 
     public AddCommentBindingModel() {
@@ -36,12 +36,12 @@ public class AddCommentBindingModel {
         this.description = description;
     }
 
-    public MultipartFile getImgUrl() {
-        return imgUrl;
+    public MultipartFile getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImgUrl(MultipartFile imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImageUrl(MultipartFile imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getWorkman() {
