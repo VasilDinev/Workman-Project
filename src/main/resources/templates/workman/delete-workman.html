@@ -11,7 +11,8 @@
 <main class="mt-3">
     <h1 class="text-center text-dark">Delete Workman</h1>
     <hr class="hr-2 bg-dark w-25">
-    <form id="add-workman-form" class="form w-25 mx-auto" th:action="@{/workman/delete/{id}(id=${workmanId})}" method="post" enctype="multipart/form-data"><input type="hidden" name="_csrf" value="c686cd14-a7f9-4216-8009-c093b7d3df86">
+    <form id="add-workman-form" class="form w-25 mx-auto jumbotron myBackground" th:action="@{/workman/delete/{id}(id=${WorkmanId})}"
+          method="post" enctype="multipart/form-data"><input type="hidden" name="_csrf" value="c686cd14-a7f9-4216-8009-c093b7d3df86">
 
         <div class="form-group">
             <label for="add-workman-firstName" class="font-weight-bold">First Name</label>

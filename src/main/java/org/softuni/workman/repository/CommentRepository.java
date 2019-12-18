@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.Optional;
 
-@RequestMapping
+
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, String> {
 

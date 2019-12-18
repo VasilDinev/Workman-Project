@@ -175,7 +175,7 @@ public class CommentController extends BaseController {
     }
 
     @GetMapping("/delete/{id}")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
 
     public ModelAndView deleteComment(@PathVariable String id, ModelAndView modelAndView) {
         CommentServiceModel commentServiceModel = this.commentService.findCommentById(id);
@@ -189,7 +189,8 @@ public class CommentController extends BaseController {
     }
 
     @PostMapping("/delete/{id}")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
+
     public ModelAndView deleteCommentConfirm(@PathVariable String id) {
         this.commentService.deleteComment(id);
 
@@ -206,7 +207,7 @@ public class CommentController extends BaseController {
 
         modelAndView.addObject("comments", commentViewModels);
 
-        return view("comments/workman-comments", modelAndView);
+        return view("comments/list-comments", modelAndView);
     }
 
 

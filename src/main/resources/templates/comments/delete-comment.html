@@ -9,11 +9,10 @@
     <th:block th:include="~{fragments/navbar}"></th:block>
 </header>
 <main class="mt-3">
-
+    <h1 class="text-center text-dark">Delete Comment</h1>
     <hr class="hr-2 bg-dark w-25">
-    <form id="add-comment-form" class="form w-25 mx-auto" th:action="@{/comments/edit/{id}(id=${commentId})}"
-          method="post" enctype="multipart/form-data"><input type="hidden" name="_csrf"
-                                                             value="c686cd14-a7f9-4216-8009-c093b7d3df86">
+    <form id="add-comments-form" class="form w-25 mx-auto jumbotron myBackground" th:action="@{/comments/delete/{id}(id=${CommentId})}"
+          tmethod="post" enctype="multipart/form-data"><input type="hidden" name="_csrf" value="c686cd14-a7f9-4216-8009-c093b7d3df86">
         <div class="form-group">
             <label for="add-comment-title" class="font-weight-bold">Title</label>
             <input type="text" class="form-control text-center" id="add-comment-title" name="title"th:value="${comment.title}"disabled>

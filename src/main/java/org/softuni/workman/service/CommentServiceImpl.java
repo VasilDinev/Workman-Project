@@ -86,7 +86,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void deleteComment(String id) {
-        Comment comment = this.commentRepository.findById(id).orElseThrow(() -> new CommentNotFoundException("Comment not found!"));
+        Comment comment = this.commentRepository.findById(id).orElseThrow(() -> new CommentNotFoundException("Comment with the given id was not found!!"));
 
         this.commentRepository.delete(comment);
     }
@@ -98,7 +98,7 @@ public class CommentServiceImpl implements CommentService {
         comment.setTitle(commentServiceModel.getTitle());
         comment.setAuthor(commentServiceModel.getAuthor());
         comment.setDescription(commentServiceModel.getDescription());
-        comment.setImageUrl(commentServiceModel.getImageUrl());
+
         return this.modelMapper.map(this.commentRepository.saveAndFlush(comment), CommentServiceModel.class);
 
     }
